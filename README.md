@@ -44,6 +44,10 @@ Can historical daily revenue from the hospital's first two years of operation be
 - Forecast horizon beyond the dataset: 30 additional days
 - Confidence intervals: 95%
 
+## Selected Visuals
+
+![ARIMA report visual](assets/report-extracts/report_image_01.png)
+
 ## Included Files
 - `notebooks/Task-3.ipynb`
 - `data/medical_clean.csv`
