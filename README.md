@@ -4,7 +4,7 @@
 This project forecasts short-term hospital revenue using daily historical revenue data from the organization's first two years of operation. The analysis applies time series preparation, stationarity testing, decomposition, ARIMA modeling, and forecast evaluation to support operational and financial planning.
 
 ## Coursework Context
-This repository packages work originally completed as part of Western Governors University's (WGU) M.S. in Data Analytics program and reorganizes it into a public portfolio format. Screenshots extracted from the original written submission are preserved in `assets/report-extracts/`.
+This project was completed as part of my M.S. in Data Analytics program at Western Governors University (WGU). Screenshots from the original written submission are preserved in `assets/report-extracts/`.
 
 ## Business Question
 Can historical daily revenue from the hospital's first two years of operation be used to accurately forecast short-term future revenue?
@@ -55,3 +55,7 @@ Can historical daily revenue from the hospital's first two years of operation be
 - `data/train_dataset.csv`
 - `data/test_dataset.csv`
 - `requirements.txt`
+
+---
+
+*\* I used Claude (Anthropic) to help organize and stage this coursework into a GitHub portfolio repository. The analysis, code, and results are entirely my own.*
