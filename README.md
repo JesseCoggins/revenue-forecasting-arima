@@ -55,7 +55,3 @@ Can historical daily revenue from the hospital's first two years of operation be
 - `data/train_dataset.csv`
 - `data/test_dataset.csv`
 - `requirements.txt`
-
----
-
-*\* I used Claude (Anthropic) to help organize and stage this coursework into a GitHub portfolio repository. The analysis, code, and results are entirely my own.*
