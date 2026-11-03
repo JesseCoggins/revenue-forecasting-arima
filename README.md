@@ -39,8 +39,10 @@ Can historical daily revenue from the hospital's first two years of operation be
 - p-value after differencing: 5.11e-30
 
 ## Results
-- RMSE: 0.4887
-- MAE: 0.3766
+The notebook scored 146 held-out day-to-day changes in revenue. The error metrics below describe forecasts of those daily changes. The plots also show reconstructed revenue levels.
+
+- RMSE on daily changes: 0.4887
+- MAE on daily changes: 0.3766
 - Forecast horizon beyond the dataset: 30 additional days
 - Confidence intervals: 95%
 
