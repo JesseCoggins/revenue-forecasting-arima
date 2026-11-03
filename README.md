@@ -1,59 +1,28 @@
-# Revenue Forecasting with ARIMA
+# Forecasting daily changes in hospital revenue
 
-## Overview
-This project forecasts short-term hospital revenue using daily historical revenue data from the organization's first two years of operation. The analysis applies time series preparation, stationarity testing, decomposition, ARIMA modeling, and forecast evaluation to support operational and financial planning.
+I used a hospital’s first **731 days of revenue** to build a short-term baseline for finance staff. A useful planning question is whether a change in receipts is unusual enough to investigate. On a chronological holdout, the model’s mean absolute error was **0.3766 in the dataset’s units of daily revenue change**.
 
-## Academic Context
-Completed during my M.S. in Data Analytics at Western Governors University (WGU), then packaged here as a public portfolio project. Screenshots from the original written submission are preserved in `assets/report-extracts/`.
+[Open the forecast notebook](notebooks/revenue_arima_forecast.ipynb) · [Inspect the source series](data/hospital_revenue_raw.csv) · [View the coursework figures](assets/report-extracts/)
 
-## Business Question
-Can historical daily revenue from the hospital's first two years of operation be used to accurately forecast short-term future revenue?
+## Why model the change?
 
-## Dataset
-- Source: `hospital_revenue_raw.csv`
-- Observations: 731 daily revenue records
-- Columns: `Day`, `Revenue`
-- Missing values: none
-- Duplicate rows: none
-
-## Workflow
-1. Inspected the revenue series for completeness and continuity
-2. Visualized the daily revenue trend over time
-3. Tested stationarity with the Augmented Dickey-Fuller test
-4. Applied first-order differencing to stabilize the series
-5. Re-tested stationarity on the differenced series
-6. Split the differenced series chronologically into 584 training observations and 146 testing observations
-7. Reviewed ACF and PACF plots to guide model selection
-8. Fit an ARIMA model and generated both test-period and future forecasts
-9. Evaluated performance with RMSE and MAE
-
-## Model
-- Original-series interpretation: ARIMA(1,1,0)
-- Implemented fit: ARIMA(1,0,0) on the differenced series
-- Rationale: the PACF showed a strong lag-1 signal while the ACF decayed gradually, supporting an AR(1) structure after differencing
-
-## Stationarity
-- ADF statistic before differencing: -2.2183
-- p-value before differencing: 0.1997
-- ADF statistic after differencing: -17.3748
-- p-value after differencing: 5.11e-30
+The original series had a trend. The Augmented Dickey–Fuller test gave a p-value of 0.1997 on revenue levels and about 5.11 × 10⁻³⁰ after first differencing. I used the autocorrelation and partial autocorrelation plots to choose a lag-one autoregressive model. In code, this is `ARIMA(1,0,0)` on daily changes, corresponding to one order of differencing on the original series.
 
 ## Results
-The notebook scored 146 held-out day-to-day changes in revenue. The error metrics below describe forecasts of those daily changes. The plots also show reconstructed revenue levels.
 
-- RMSE on daily changes: 0.4887
-- MAE on daily changes: 0.3766
-- Forecast horizon beyond the dataset: 30 additional days
-- Confidence intervals: 95%
+I used the first **584 daily changes** for training and the following **146** for evaluation. Keeping the order of observations preserved the forecasting task.
 
-## Selected Visuals
+| Held-out metric | Daily revenue change |
+|---|---:|
+| Mean absolute error (MAE) | 0.3766 |
+| Root mean squared error (RMSE) | 0.4887 |
 
-![ARIMA report visual](assets/report-extracts/report_image_01.png)
+These scores apply to the change from one day to the next. A finance team using a forecast to set a monthly budget would also want to measure error in revenue levels and accumulated totals.
 
-## Included Files
-- `notebooks/revenue_arima_forecast.ipynb`
-- `data/hospital_revenue_raw.csv`
-- `data/cleaned_dataset.csv`
-- `data/train_dataset.csv`
-- `data/test_dataset.csv`
-- `requirements.txt`
+The notebook illustrates a 30-day revenue path by adding forecasts of daily changes to the last observed level. The fitted model ends at the training cutoff. For a forecast issued on day 731, update the model with the holdout observations first. The plotted revenue-level band adds up the 95% bounds for individual daily changes and should be treated as illustrative.
+
+## Review or rerun
+
+Install the [Python requirements](requirements.txt) in a Jupyter environment and run the notebook with `notebooks/` as the working directory. It contains the stationarity tests, model fit, holdout predictions and plots. [Training series](data/train_dataset.csv) · [Holdout series](data/test_dataset.csv) · [Cleaned data](data/cleaned_dataset.csv)
+
+*WGU M.S. in Data Analytics coursework, D603 Machine Learning.*
