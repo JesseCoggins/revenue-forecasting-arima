@@ -1,6 +1,6 @@
 # Forecasting daily changes in hospital revenue
 
-I tested whether a hospital finance team could forecast changes in daily receipts more accurately than assuming receipts would stay flat. On **146 held-out days**, the no-change forecast was slightly more accurate on both measures. ARIMA’s average absolute error was **0.3765 million dollars** in daily revenue change, compared with **0.3746 million** for the baseline.
+I tested how forecast timing changes the decision for hospital finance staff. On **146 held-out days**, ARIMA updated each day had RMSE **0.4408 million dollars** of daily revenue change, compared with **0.4860 million** for assuming no change. When all 146 predictions were issued together at day 585, no-change performed slightly better.
 
 [Open the forecast notebook](notebooks/revenue_arima_forecast.ipynb) · [Inspect the 731-day source series](data/hospital_revenue_raw.csv) · [View the original coursework figures](assets/report-extracts/)
 
@@ -13,7 +13,16 @@ The D603 data dictionary reports revenue in millions of dollars. The CSV contain
 | ARIMA on daily changes | 0.3765 | 0.4887 |
 | Assume no daily change | 0.3746 | 0.4860 |
 
-The simpler forecast gives finance staff a useful comparison when deciding whether to maintain a more complex model. A monthly budgeting decision would also require evaluating errors in revenue levels and monthly totals over several historical periods.
+## Forecasts updated each day
+
+The portfolio edition also refits the same AR(1) model form on an expanding history before predicting the next day. Each new fit sees only observations available before its forecast. The test dates remain days 586–731.
+
+| Forecast cadence | MAE ($ millions of daily change) | RMSE ($ millions of daily change) |
+|---|---:|---:|
+| ARIMA, refitted before each next day | 0.3531 | 0.4408 |
+| Assume no daily change | 0.3746 | 0.4860 |
+
+Daily operations and a budget prepared months in advance have different information available. These results support ARIMA for the tested daily update schedule, while the fixed-origin comparison favors no change. Neither evaluation measures error in monthly totals. [All 146 paired forecasts](data/forecast_evaluation.csv)
 
 ## Model and 30-day forecast
 
@@ -23,7 +32,7 @@ For a forecast issued after day 731, the notebook refits that model form to all 
 
 ## Coursework and portfolio verification
 
-The submitted notebook reported holdout MAE of 0.3766 and RMSE of 0.4887. Its integer start position skipped the first forecast step. Its 30-day figure also drew predictions from the training cutoff against the final observed revenue. The public version corrects both forecast origins, adds the no-change comparison and retains the original coursework figures for reference.
+The submitted notebook reported holdout MAE of 0.3766 and RMSE of 0.4887. Its integer start position skipped the first forecast step. Its 30-day figure also drew predictions from the training cutoff against the final observed revenue. The portfolio edition corrects both forecast origins, adds the no-change comparison and the daily refit evaluation, and retains the original coursework figures as historical evidence. The 2026 verification used Python 3.13.1, statsmodels 0.14.4 and NumPy 2.2.2. [Verified environment](requirements-verified.txt)
 
 Install the [Python requirements](requirements.txt) in a Jupyter environment and run the notebook with `notebooks/` as the working directory. The prepared series are included. [Training changes](data/train_dataset.csv) · [Holdout changes](data/test_dataset.csv) · [Cleaned series](data/cleaned_dataset.csv)
 
