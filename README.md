@@ -6,7 +6,7 @@ I used 731 daily hospital revenue observations to evaluate ARIMA forecasts for h
 
 ## What was evaluated
 
-The D603 data dictionary reports revenue in millions of dollars. The CSV contains days 1–731. First differencing produced 730 day-to-day changes. I fitted an AR(1) model to the first 584 changes and issued all 146 test forecasts from day 585. The first prediction corresponds to day 586 and the last to day 731.
+The accompanying data dictionary reports revenue in millions of dollars. The CSV contains days 1–731. First differencing produced 730 day-to-day changes. I fitted an AR(1) model to the first 584 changes and issued all 146 test forecasts from day 585. The first prediction corresponds to day 586 and the last to day 731.
 
 | Forecast on the 146 test days | Mean absolute error (millions of dollars) | Root mean squared error (millions of dollars) |
 |---|---:|---:|
