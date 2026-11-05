@@ -2,6 +2,10 @@
 
 I used 731 daily hospital revenue observations to evaluate ARIMA forecasts for hospital finance staff. The primary evaluation issued **146 forecasts together** from day 585. ARIMA had RMSE **0.4887 million dollars** of daily revenue change, versus **0.4860 million** for assuming no change. I also projected revenue levels for the next 30 days.
 
+![Daily hospital revenue history across 731 observations](assets/report-extracts/report_image_01.png)
+
+*Observed daily hospital revenue over 731 days, in millions of dollars.*
+
 [Open the forecast notebook](notebooks/revenue_arima_forecast.ipynb) · [Inspect the 731-day source series](data/hospital_revenue_raw.csv) · [View the revenue history](assets/report-extracts/)
 
 ## What was evaluated
