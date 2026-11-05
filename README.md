@@ -36,4 +36,8 @@ The evaluation used Python 3.13.1, statsmodels 0.14.4 and NumPy 2.2.2. [Numerica
 
 Install the [Python requirements](requirements.txt) in a Jupyter environment and run the notebook with `notebooks/` as the working directory. The prepared series are included. [Training changes](data/train_dataset.csv) · [Holdout changes](data/test_dataset.csv) · [Cleaned series](data/cleaned_dataset.csv)
 
+## Data and environment
+
+[Data origin and reuse notes](data/README.md). Install [requirements.txt](requirements.txt), which includes [the checked direct package versions](requirements-verified.txt). All notebook code cells were rerun on Python 3.13.1 with the pinned direct dependencies. This includes both forecast evaluation protocols and the future-series refit. These are direct dependency pins, not a complete transitive lockfile.
+
 *WGU M.S. in Data Analytics coursework, D603 Machine Learning.*
