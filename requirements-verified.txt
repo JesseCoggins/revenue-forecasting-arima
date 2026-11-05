@@ -1,4 +1,7 @@
-# Direct package versions used for the validation scope documented in README.md.
+# Validation environment and scope
+# All notebook code cells executed on Python 3.13.1, including fixed-cutoff and daily-refit
+# evaluations and the future-series refit.
+# Direct package versions used for these checks:
 pandas==2.2.3
 numpy==2.2.2
 matplotlib==3.10.0

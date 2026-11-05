@@ -38,6 +38,7 @@ Install the [Python requirements](requirements.txt) in a Jupyter environment and
 
 ## Data and environment
 
-[Data origin and reuse notes](data/README.md). Install [requirements.txt](requirements.txt), which includes [the checked direct package versions](requirements-verified.txt). All notebook code cells were rerun on Python 3.13.1 with the pinned direct dependencies. This includes both forecast evaluation protocols and the future-series refit. These are direct dependency pins, not a complete transitive lockfile.
+Data: WGU daily hospital-revenue series; [source notes](data/README.md).  
+Install: `python -m pip install -r requirements.txt`; [environment details](requirements-verified.txt).
 
 *WGU M.S. in Data Analytics coursework, D603 Machine Learning.*
