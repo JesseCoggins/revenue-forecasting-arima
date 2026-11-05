@@ -2,7 +2,7 @@
 
 I tested how forecast timing changes the decision for hospital finance staff. On **146 held-out days**, ARIMA updated each day had RMSE **0.4408 million dollars** of daily revenue change, compared with **0.4860 million** for assuming no change. When all 146 predictions were issued together at day 585, no-change performed slightly better.
 
-[Open the forecast notebook](notebooks/revenue_arima_forecast.ipynb) · [Inspect the 731-day source series](data/hospital_revenue_raw.csv) · [View the original coursework figures](assets/report-extracts/)
+[Open the forecast notebook](notebooks/revenue_arima_forecast.ipynb) · [Inspect the 731-day source series](data/hospital_revenue_raw.csv) · [View the revenue history](assets/report-extracts/)
 
 ## What was evaluated
 
@@ -15,7 +15,7 @@ The D603 data dictionary reports revenue in millions of dollars. The CSV contain
 
 ## Forecasts updated each day
 
-The portfolio edition also refits the same AR(1) model form on an expanding history before predicting the next day. Each new fit sees only observations available before its forecast. The test dates remain days 586–731.
+The daily evaluation refits the same AR(1) model form on an expanding history before predicting the next day. Each new fit sees only observations available before its forecast. The test dates remain days 586–731.
 
 | Forecast cadence | MAE ($ millions of daily change) | RMSE ($ millions of daily change) |
 |---|---:|---:|
@@ -30,9 +30,9 @@ The Augmented Dickey–Fuller test gave a p-value of 0.1997 on levels and about 
 
 For a forecast issued after day 731, the notebook refits that model form to all 731 revenue levels as `ARIMA(1,1,0)` with drift. It projects days **732–761** and calculates 95% prediction intervals directly on revenue levels. There are no observed revenues for those future dates in this dataset.
 
-## Coursework and portfolio verification
+## Reproduce the analysis
 
-The submitted notebook reported holdout MAE of 0.3766 and RMSE of 0.4887. Its integer start position skipped the first forecast step. Its 30-day figure also drew predictions from the training cutoff against the final observed revenue. The portfolio edition corrects both forecast origins, adds the no-change comparison and the daily refit evaluation, and retains the original coursework figures as historical evidence. The 2026 verification used Python 3.13.1, statsmodels 0.14.4 and NumPy 2.2.2. [Verified environment](requirements-verified.txt)
+The evaluation used Python 3.13.1, statsmodels 0.14.4 and NumPy 2.2.2. [Numerical environment](requirements-verified.txt)
 
 Install the [Python requirements](requirements.txt) in a Jupyter environment and run the notebook with `notebooks/` as the working directory. The prepared series are included. [Training changes](data/train_dataset.csv) · [Holdout changes](data/test_dataset.csv) · [Cleaned series](data/cleaned_dataset.csv)
 
